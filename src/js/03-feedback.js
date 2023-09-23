@@ -9,7 +9,7 @@ const storedFormState =
 emailInput.value = storedFormState.email ?? "";
 messageTextarea.value = storedFormState.message ?? "";
 
-console.log(storedFormState);
+//console.log(storedFormState);
 
 const formState = {
   email: emailInput.value ?? "",
@@ -28,6 +28,14 @@ form.addEventListener("input", (event) => {
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
+  const form = event.currentTarget;
+  const email = form.elements.email.value;
+  const message = form.elements.message.value;
+
+  if (email === "" || message === "") {
+    return alert("Please fill in all the fields!");
+  }
+
   localStorage.removeItem("feedback-form-state");
   emailInput.value = "";
   messageTextarea.value = "";
